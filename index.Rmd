@@ -1,8 +1,8 @@
 ---
-title: "El meu dahsboard"
+title: "El meu dashboard"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: fill
     social: ["menu"]
     source_code: embed
@@ -20,11 +20,43 @@ data("penguins")
 
 ```
 
-Plots
+Plots{data-navmenu="Main menu"}
 ====================================================================
 
-Column {data-width=650}
------------------------------------------------------------------------
+sidebar{.sidebar}
+--------------------------------------------------------------------
+<!-- 
+This is a comment
+-->
+
+### Penguin stats
+
+Aqui va tota l'explicació de l'estadistica . The number of penguins is `r nrow(penguins)`.
+
+Row
+--------------------------------------------------------------------
+
+### Number of penguins
+
+```{r}
+valueBox(nrow(penguins), icon = "fa-linux")
+```
+
+```{r}
+avg_mass <- round(mean(penguins$body_mass_g, na.rm=T), 1)
+# gauge(avg_mass, 
+#       min(0), 
+#       max = max(penguins$body_mass_g, na.rm=T), 
+#       gaugeSectors(success = c(4000, 6300), 
+#                    warning = c(2000, 3999), 
+#                    danger = c(0, 1999)
+#                    )
+#       )
+
+```
+
+Column {.tabset}
+--------------------------------------------------------------------
 
 ### Scatter plot og bill length
 
@@ -36,9 +68,6 @@ a <- penguins %>% ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = spec
 ggplotly(a)
 
 ```
-
-Column {data-width=350}
------------------------------------------------------------------------
 
 ### Chart B
 
@@ -59,7 +88,7 @@ penguins %>% ggplot(aes(x = flipper_length_mm, fill = species)) +
 
 ```
 
-Data
+Data{data-navmenu="Main menu"}
 ========================================================================
 
 ```{r}
