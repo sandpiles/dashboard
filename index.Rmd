@@ -1,5 +1,6 @@
 ---
 title: "El meu dashboard"
+runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -10,6 +11,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(bslib)
 library(tidyverse)
 library(palmerpenguins)
 library(plotly)
